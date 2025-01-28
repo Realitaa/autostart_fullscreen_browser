@@ -26,36 +26,75 @@
       border-radius: 4px;
     }
     button {
-      background-color: #4CAF50;
       color: white;
       padding: 10px 15px;
       border: none;
       border-radius: 4px;
       cursor: pointer;
     }
-    button:hover {
-      background-color: #45a049;
+    #save-btn {
+      background-color: #4CAF50;
+    }
+    #restart-btn {
+      background-color: #fd7e14;
+    }
+    #close-btn {
+      background-color: #dc3545;
     }
     .form-container {
       max-width: 600px;
       margin: 0 auto;
     }
+    .log-container {
+      margin-top: 20px;
+      background-color: #000;
+      color: #0f0; /* Hijau untuk teks log */
+      height: 300px;
+      overflow-y: auto;
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    .log-container p {
+      margin: 5px 0;
+    }
+    a {
+      color: blue;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    a:hover {
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
   <div class="form-container">
-    <h1>Pengaturan URL</h1>
+    <h1>Autostart Fullscreen Browser</h1>
 
-    <label for="main-url">URL Layar Utama:</label>
+    <label for="main-url">URL Layar Utama (<span id="main-monitor-name">Tidak Ada Monitor Utama</span>):</label>
     <input type="text" id="main-url" placeholder="Masukkan URL Layar Utama">
 
-    <label for="external-url">URL Layar Eksternal:</label>
+    <label for="external-url">URL Layar Eksternal (<span id="external-monitor-name">Tidak Ada Monitor Eksternal</span>):</label>
     <input type="text" id="external-url" placeholder="Masukkan URL Layar Eksternal">
 
     <button id="save-btn">Simpan Pengaturan</button>
+    <button id="restart-btn">Restart Software</button>
+    <button id="close-btn">Tutup Software</button>
 
-    <h2>Dokumentasi</h2>
-    <p>Halaman ini memungkinkan Anda untuk mengonfigurasi URL untuk layar utama dan layar eksternal. URL yang Anda masukkan akan digunakan untuk menampilkan halaman di monitor yang sesuai.</p>
+    <div class="log-container" id="log-container">
+      <!-- Log akan ditambahkan di sini -->
+    </div>
+
+    <h2>FAQ</h2>
+    <ol>
+      <li><b>Bagaimana cara memastikan tampilan halaman web pada monitor utama dan monitor eksternal tidak tertukar?</b></li>
+      <p>Atur monitor utama Anda di <a href="ms-settings:display">Display Settings</a>. Pilih monitor utama Anda pada pilihan monitor. Jika tidak tersedia berarti tidak ada monitor eksternal yang terhubung.</p>
+      <p>Scroll ke bawah sampai menemukan checkbox "Mark as Main Monitor" dan centang opsi tersebut.</p>
+      
+      <li><b>Mengapa perubahan saya tidak diterapkan?</b></li>
+      <p>Setiap perubahan Anda diterapkan ketika Anda memulai ulang software (Restart Software).</p>
+    </ol>
   </div>
 
   <script src="renderer.js"></script>

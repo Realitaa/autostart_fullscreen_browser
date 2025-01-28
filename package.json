@@ -1,16 +1,18 @@
 {
   "name": "autostart_fullscreen_browser",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "package-win": "electron-packager . autostart --platform=win32 --arch=x64 --out=dist --overwrite",
     "start": "electron ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^34.0.1"
-  }
+    "electron": "^34.0.1",
+    "electron-packager": "^17.1.2"
+  },
+  "description": ""
 }

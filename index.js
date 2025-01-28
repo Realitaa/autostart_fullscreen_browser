@@ -51,6 +51,7 @@ app.on('ready', async () => {
       nodeIntegration: false
     }
   });
+  
   if (mainDisplay) {
     mainWindowDisplay.loadURL(mainDisplay);  // Memuat URL untuk layar utama
   }
@@ -99,6 +100,15 @@ ipcMain.handle('get-config', () => {
   return { mainDisplay, externalDisplay };  // Mengembalikan URL yang disimpan di config.json
 });
 
+ipcMain.handle('get-displays', () => {
+  const displays = screen.getAllDisplays();
+  // console.log('Daftar monitor yang terhubung:', displays);
+  return displays.map((display, index) => ({
+    name: display.label || `Monitor ${index + 1}`,
+    bounds: display.bounds,
+  }));
+});
+
 // IPC untuk menyimpan pengaturan
 ipcMain.on('save-settings', (event, newConfig) => {
   mainDisplay = newConfig.mainDisplay;
@@ -117,4 +127,15 @@ ipcMain.on('save-settings', (event, newConfig) => {
       console.log('Konfigurasi berhasil disimpan');
     }
   });
+});
+
+// Restart software ketika menerima perintah dari renderer process
+ipcMain.on('restart-software', () => {
+  app.relaunch(); // Relaunch aplikasi
+  app.exit(0); // Keluar dari aplikasi
+});
+
+// Tutup software ketika menerima perintah dari renderer process
+ipcMain.on('close-software', () => {
+  app.quit();
 });
