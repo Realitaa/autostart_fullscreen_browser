@@ -65,4 +65,6 @@ async function loadDisplayNames() {
   }
 }
 
-loadDisplayNames();
+document.addEventListener('DOMContentLoaded', () => {
+  loadDisplayNames();  // Panggil loadDisplayNames setelah DOM dimuat
+});
